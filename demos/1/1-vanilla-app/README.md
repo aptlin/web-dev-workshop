@@ -2,7 +2,7 @@
   <img src="./assets/logo.svg" width=100>
 </div>
 
-# Building an app Bulma & pure HTML
+# Building a moodboard with Bulma & pure HTML
 
 ![Moodie: front page](./assets/example.png)
 
