@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/normalize.css@8.0.1/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <title>Moodie</title>
+    <meta
+      name="description"
+      content="Moodie: the one moodboard to rule them all"
+    />
+    <script src="js/giphy.js"></script>
+    <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+  </head>
+
+  <body>
+    <section class="section">
+      <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <img
+              class="navbar-item"
+              src="assets/logo.svg"
+              alt="Moodie logo"
+              width="100"
+            />
+            <h1 class="navbar-item is-size-3 is-unselectable">
+              Moodie
+            </h1>
+            <p class="navbar-item is-size-5 is-unselectable">
+              The one moodboard to rule them all
+            </p>
+          </div>
+        </nav>
+        <nav class="level">
+          <div class="level-item has-text-centered ">
+            <div class="field has-addons">
+              <form class="control" id="search-form">
+                <input
+                  id="search-item"
+                  class="input"
+                  type="text"
+                  placeholder="What do you want to experience?"
+                />
+              </form>
+              <div id="search-button" class="control">
+                <button class="button is-info" type="submit">
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <article class="message is-warning is-hidden" id="search-warning">
+              <div class="message-header">
+                <p>Please search for a meaningful experience!</p>
+              </div>
+              <div class="message-body">
+                Alas, I could not find anything.
+              </div>
+            </article>
+          </div>
+        </nav>
+        <div class="columns is-multiline" id="search-results"></div>
+      </div>
+    </section>
+    <script>
+      // Make sure that the search input fits the placeholder length
+      const searchInput = document.getElementById("search-item");
+      searchInput.setAttribute(
+        "size",
+        searchInput.getAttribute("placeholder").length
+      );
+
+      fetch("secrets.json") // read the secrets
+        .then(response => response.json()) // parse the json
+        .then(env => {
+          const searchForm = document.getElementById("search-form");
+          searchForm.addEventListener("submit", event => {
+            fetchTrendingGifs(env.GIPHY_KEY);
+            event.preventDefault();
+          });
+          const searchButton = document.getElementById("search-button")
+          searchButton.addEventListener("click", event => {
+            fetchTrendingGifs(env.GIPHY_KEY);
+            event.preventDefault();
+          });
+          // el.innerText = searchQuery;
+        });
+    </script>
+  </body>
+</html>

@@ -102,3 +102,4 @@ dist
 
 # TernJS port file
 .tern-port
+demos/1/1-vanilla-app/secrets.json

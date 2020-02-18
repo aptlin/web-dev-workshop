@@ -1,0 +1,22 @@
+{
+  "name": "vanilla-moodie",
+  "version": "1.0.0",
+  "description": "The one moodboard to rule them all",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdll/web-dev-workshop.git"
+  },
+  "author": "Sasha Illarionov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sdll/web-dev-workshop/issues"
+  },
+  "homepage": "https://github.com/sdll/web-dev-workshop#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
