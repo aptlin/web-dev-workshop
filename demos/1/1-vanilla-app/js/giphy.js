@@ -17,7 +17,6 @@ function fetchTrendingGifs(apiKey) {
   fetch(searchURL)
     .then(data => data.json())
     .then(results => {
-      console.log(results);
       if (results.data.length === 0) {
         toggleWarning(false);
       } else {

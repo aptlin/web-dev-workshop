@@ -7,4 +7,4 @@
 - Grokking the basics
   - [Prerequisites and reading materials](docs/1.md)
   - Demos:
-    - 1 
+    - [Building a moodboard with Bulma & pure HTML](demos/1/1-vanilla-app/README.md)
