@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup, ListGroupItem, Badge, Button } from "reactstrap";
+import { ListGroup, ListGroupItem, Badge, Button, Jumbotron } from "reactstrap";
 import LikeButton from "../../components/Like";
 import startCase from "lodash.startcase";
 import { Link, useLocation } from "react-router-dom";
@@ -43,11 +43,13 @@ const Favorites: React.FC<IFavorites> = ({ archive, updateArchive }) => {
     );
   });
   return (
-    <div className="mt-5">
-      <h4 className={"text-nowrap"}>
-        Favorites ({Object.keys(favorites).length})
-      </h4>
-      {favoritesList}
+    <div>
+      <Jumbotron >
+        <h4 className={"text-nowrap"}>
+          Favorites ({Object.keys(favorites).length})
+        </h4>
+        {favoritesList}
+      </Jumbotron>
     </div>
   );
 };

@@ -1,4 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Building a moodboard with React & Reactstrap
+
+## Landing
+
+![Moodie Landing](docs/landing.png)
+
+## Search
+
+![Moodie Search](docs/search.png)
+
+## Setup
+
+1. Obtain a Giphy API key by following [the instructions](https://support.giphy.com/hc/en-us/articles/360020283431-Request-A-GIPHY-API-Key).
+2. Rename `.example.env` to `.env` and paste the key.
+3. Run `npm install` and `npm start`.
+4. Tweak the code and enjoy!
 
 ## Available Scripts
 

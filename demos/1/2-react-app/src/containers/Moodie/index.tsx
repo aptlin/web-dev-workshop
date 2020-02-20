@@ -3,22 +3,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FormikHelpers } from "formik";
 import kebabcase from "lodash.kebabcase";
 import startCase from "lodash.startcase";
-import React from "react";
+import React, { useState } from "react";
 import {
+  Link,
   RouteComponentProps,
   useHistory,
   useLocation,
-  useParams,
-  Link
+  useParams
 } from "react-router-dom";
-import { Col, Container, Row, Button } from "reactstrap";
+import { Button, Col, Container, Row } from "reactstrap";
 import Favorites, { toggleFavorite } from "../Favorites";
 import Gallery from "../Gallery";
 import Header from "../Header";
 import "./index.css";
+import About from "../../components/About";
 
 const Moodie: React.FC<RouteComponentProps> = ({ match }) => {
-  const [archive, updateArchive] = React.useState<IArchive>({});
+  const [archive, updateArchive] = useState<IArchive>({});
   const giphyApiKey = process.env.REACT_APP_GIPHY_KEY;
   const history = useHistory();
   const fetchTrendingGifs = (
@@ -73,13 +74,13 @@ const Moodie: React.FC<RouteComponentProps> = ({ match }) => {
     <Container fluid={true}>
       <Header onSubmit={fetchTrendingGifs} />
       <Row>
-        <Col md={{ size: 2 }}>
+        <Col md={{ size: 3 }}>
           <Favorites archive={archive} updateArchive={updateArchive} />
         </Col>
         <Col>
           {log ? (
             <h4 className="d-flex align-items-center">
-              Current experience:{" "}
+              Current experience:
               <span className="pl-3 mr-auto">
                 <Link to={`/${experienceName}`}>{startCase(log.title)}</Link>
               </span>
@@ -103,7 +104,9 @@ const Moodie: React.FC<RouteComponentProps> = ({ match }) => {
                 </Button>
               )}
             </h4>
-          ) : null}
+          ) : (
+            <About />
+          )}
           <Gallery archive={archive} />
         </Col>
       </Row>
