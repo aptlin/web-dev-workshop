@@ -1,8 +1,8 @@
-import React from "react";
-import { ListGroup, ListGroupItem, Badge, Button, Jumbotron } from "reactstrap";
-import LikeButton from "../../components/Like";
 import startCase from "lodash.startcase";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Jumbotron } from "reactstrap";
+import LikeButton from "../../components/Like";
 import "./index.css";
 
 export function toggleFavorite(
@@ -44,7 +44,7 @@ const Favorites: React.FC<IFavorites> = ({ archive, updateArchive }) => {
   });
   return (
     <div>
-      <Jumbotron >
+      <Jumbotron>
         <h4 className={"text-nowrap"}>
           Favorites ({Object.keys(favorites).length})
         </h4>
