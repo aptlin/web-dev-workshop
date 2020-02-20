@@ -12,11 +12,11 @@ import {
   useParams
 } from "react-router-dom";
 import { Button, Col, Container, Row } from "reactstrap";
+import About from "../../components/About";
 import Favorites, { toggleFavorite } from "../Favorites";
 import Gallery from "../Gallery";
 import Header from "../Header";
 import "./index.css";
-import About from "../../components/About";
 
 const Moodie: React.FC<RouteComponentProps> = ({ match }) => {
   const [archive, updateArchive] = useState<IArchive>({});
@@ -79,30 +79,32 @@ const Moodie: React.FC<RouteComponentProps> = ({ match }) => {
         </Col>
         <Col>
           {log ? (
-            <h4 className="d-flex align-items-center">
-              Current experience:
-              <span className="pl-3 mr-auto">
+            <h4 className="row d-flex align-items-center">
+              <Col xs="auto">Current experience:</Col>
+              <Col xs="auto">
                 <Link to={`/${experienceName}`}>{startCase(log.title)}</Link>
-              </span>
-              {log.isFavorite ? (
-                <Button
-                  color="danger"
-                  onClick={() =>
-                    toggleFavorite(experienceName, log, updateArchive)
-                  }
-                >
-                  Remove from favorites{" "}
-                </Button>
-              ) : (
-                <Button
-                  color="warning"
-                  onClick={() =>
-                    toggleFavorite(experienceName, log, updateArchive)
-                  }
-                >
-                  Add to favorites
-                </Button>
-              )}
+              </Col>
+              <Col xs="auto" className="mr-auto pb-2 pt-2">
+                {log.isFavorite ? (
+                  <Button
+                    color="danger"
+                    onClick={() =>
+                      toggleFavorite(experienceName, log, updateArchive)
+                    }
+                  >
+                    Remove from favorites
+                  </Button>
+                ) : (
+                  <Button
+                    color="warning"
+                    onClick={() =>
+                      toggleFavorite(experienceName, log, updateArchive)
+                    }
+                  >
+                    Add to favorites
+                  </Button>
+                )}
+              </Col>
             </h4>
           ) : (
             <About />
