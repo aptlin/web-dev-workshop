@@ -26,8 +26,7 @@ const MoodieFetcher: React.FC<MoodieFetcherProps> = ({
 };
 
 const Moodie: React.FC<MoodieProps> = () => {
-  let { searchQuery } = useParams();
-  searchQuery = (searchQuery || "") as string;
+  const { searchQuery } = useParams();
   return (
     <Container fluid={true} className="p-4">
       <Header />
@@ -76,7 +75,7 @@ const Moodie: React.FC<MoodieProps> = () => {
                     dispatch={dispatch}
                     searchRequest={{
                       ...config.defaultQuery,
-                      searchQuery: searchQuery || ""
+                      searchQuery
                     }}
                   />
                 );
