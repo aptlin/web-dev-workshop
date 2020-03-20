@@ -34,10 +34,10 @@ const AuthButton: React.FC = ({ ...props }) => {
     <div id="auth-button">
       {isInitializing ? (
         <Spinner type="grow" {...props} />
-      ) : isAuthenticated ? (
+      ) : isAuthenticated && user ? (
         <Dropdown isOpen={dropdownOpen} toggle={toggle} {...props}>
           <DropdownToggle color="light" caret>
-            <ProfilePicture src={user!.picture || ""} />
+            <ProfilePicture src={user.picture || ""} />
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem onClick={onClick} color="danger" {...props}>
