@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardImg, Spinner } from "reactstrap";
-import { GiphySearchResult, GIFObject } from "../../types/giphy";
+import { GIFObject } from "../../types/giphy";
 
 interface GalleryItemProps {
   experience: GIFObject;
@@ -10,7 +10,9 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ experience }) => {
   return (
     <Card
       style={{
-        background: "#e5e5e5"
+        background: "#fff",
+        border: "none",
+        margin: "5px"
       }}
     >
       <div

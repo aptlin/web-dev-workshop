@@ -6,3 +6,6 @@
   vertical-align: bottom;
   height: auto;
 }
+.gallery-column {
+  padding: 0;
+}

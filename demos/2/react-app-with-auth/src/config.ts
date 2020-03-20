@@ -35,6 +35,7 @@ const config = {
     GA_KEY: process.env.REACT_APP_GA_KEY || "",
     SENTRY_DOMAIN: process.env.REACT_APP_SENTRY_DOMAIN || "",
     ACTIVATION_DISTANCE: 50,
+    NUM_COLUMNS: 3,
     SEARCH_BATCH_SIZE
   },
   interface: {
