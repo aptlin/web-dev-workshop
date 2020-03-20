@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import {
   Button,
   FormFeedback,
@@ -9,10 +10,9 @@ import {
   InputGroupAddon
 } from "reactstrap";
 import * as Yup from "yup";
-import "./index.css";
-import { GalleryContextConsumer } from "../../services/Gallery";
-import { useHistory } from "react-router-dom";
 import config from "../../config";
+import { GiphySearchParams } from "../../types/giphy";
+import "./index.css";
 
 const searchQueryWarning = "Please search for a meaningful experience.";
 const searchValidationSchema = Yup.object().shape({
@@ -46,33 +46,26 @@ const SearchInput: React.FC<any> = ({
 
 const Search: React.FC = () => {
   const history = useHistory();
+  const onSubmit = (request: GiphySearchParams) => {
+    history.push(`/${request.searchQuery}`);
+  };
   return (
-    <GalleryContextConsumer>
-      {({ dispatch }: GalleryState) => {
-        const onSubmit = (request: SearchRequest) => {
-          dispatch({ type: "fetch", data: request });
-          history.push(`/${request.searchQuery}`);
-        };
-        return (
-          <Formik
-            initialValues={config.defaultQuery}
-            validationSchema={searchValidationSchema}
-            onSubmit={onSubmit}
-          >
-            {() => (
-              <Form id="search-form">
-                <Field
-                  name="searchQuery"
-                  id="search"
-                  placeholder={config.interface.searchPlaceholder}
-                  component={SearchInput}
-                />
-              </Form>
-            )}
-          </Formik>
-        );
-      }}
-    </GalleryContextConsumer>
+    <Formik
+      initialValues={config.defaults.defaultSearchParams}
+      validationSchema={searchValidationSchema}
+      onSubmit={onSubmit}
+    >
+      {() => (
+        <Form id="search-form">
+          <Field
+            name="searchQuery"
+            id="search"
+            placeholder={config.interface.searchPlaceholder}
+            component={SearchInput}
+          />
+        </Form>
+      )}
+    </Formik>
   );
 };
 export default Search;

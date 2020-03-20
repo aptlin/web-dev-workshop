@@ -1,11 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { withTracker } from "./components/withTracker";
+import config from "./config";
+import * as Sentry from "@sentry/browser";
 import Moodie from "./containers/Moodie";
-import * as serviceWorker from "./serviceWorker";
 import { Auth0Provider } from "./services/Auth";
 import { GalleryContextProvider } from "./services/Gallery";
-import config from "./config";
+import * as serviceWorker from "./serviceWorker";
+import { FavoritesContextProvider } from "./services/Favorites";
+
+Sentry.init({ dsn: config.constants.SENTRY_DOMAIN });
 
 const auth0Domain = config.constants.AUTH0_DOMAIN;
 const auth0ClientId = config.constants.AUTH0_CLIENT_ID;
@@ -20,6 +25,7 @@ if (
   throw new Error("missing env vars");
 }
 
+const TrackedMoodie = withTracker(Moodie);
 ReactDOM.render(
   <Router>
     <Auth0Provider
@@ -29,10 +35,12 @@ ReactDOM.render(
       audience={auth0Audience}
     >
       <GalleryContextProvider>
-        <Switch>
-          <Route path="/:searchQuery" component={Moodie} />
-          <Route path="/" component={Moodie} />
-        </Switch>
+        <FavoritesContextProvider>
+          <Switch>
+            <Route path="/:searchQuery" component={TrackedMoodie} />
+            <Route path="/" component={TrackedMoodie} />
+          </Switch>
+        </FavoritesContextProvider>
       </GalleryContextProvider>
     </Auth0Provider>
   </Router>,

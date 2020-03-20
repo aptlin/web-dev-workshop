@@ -1,16 +1,13 @@
-import React from "react";
+import React, { EventHandler, SyntheticEvent } from "react";
 import "./index.css";
 
-const LikeButton: React.FC<LikeProps> = ({ on, onClick }) => {
+interface LikeProps {
+  onClick: EventHandler<SyntheticEvent<HTMLSpanElement>>;
+}
+const LikeButton: React.FC<LikeProps> = ({ onClick }) => {
   return (
     <div className="mx-2">
-      <span
-        className="heart"
-        style={{
-          filter: on ? "none" : "grayscale(100%) invert(100%) "
-        }}
-        onClick={onClick}
-      ></span>
+      <span className="heart" onClick={onClick}></span>
     </div>
   );
 };

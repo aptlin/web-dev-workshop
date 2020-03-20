@@ -1,91 +1,61 @@
-import axios from "axios";
-import React, { createContext, Reducer, useEffect, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import React, { createContext, useEffect, useReducer } from "react";
+import { useLocation } from "react-router-dom";
+import {
+  dispatchGiphySearchWrapper,
+  search,
+  searchMore
+} from "../../actions/search";
+import { updateSearchQuery } from "../../actions/searchParams";
 import config from "../../config";
+import { giphySearchParamsReducer } from "../../reducers/giphySearchParams";
+import { giphySearchResultsReducer } from "../../reducers/giphySearchResults";
+import { GalleryState } from "../../types/gallery";
 
 const GalleryContext = createContext<GalleryState>({
-  state: {},
+  state: {
+    giphySearchResults: config.defaults.defaultSearchResults,
+    giphySearchParams: config.defaults.defaultSearchParams
+  },
   dispatch: () => {}
 });
 
-const archiveReducer: Reducer<ArchiveState, ArchiveAction> = (
-  state,
-  action
-) => {
-  switch (action.type) {
-    case "update":
-      return action.data;
-    case "clear":
-      return {};
-    default:
-      throw new Error();
-  }
-};
-
 const GalleryContextProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(archiveReducer, {});
-  const dispatchProxy: GalleryDispatch = React.useCallback(
-    action => {
-      switch (action.type) {
-        case "fetch":
-          const { searchQuery, limit, offset, rating, lang } = action.data;
-          if (searchQuery.length > 0) {
-            const url = config.constants.GIPHY_API_SEARCH;
-            return axios
-              .get(url, {
-                timeout: config.constants.HTTP_REQUEST_TIMEOUT,
-                params: {
-                  api_key: config.constants.GIPHY_API_KEY,
-                  q: searchQuery,
-                  limit,
-                  offset,
-                  rating,
-                  lang
-                }
-              })
-              .then(results => {
-                const entry: ArchiveState = {};
-                entry[searchQuery] = {
-                  title: searchQuery,
-                  experiences: [],
-                  isFavorite: false
-                };
-                for (const result of results.data.data) {
-                  entry[searchQuery].experiences.push({
-                    url: result.images.fixed_width.url,
-                    height: result.images.fixed_width.height,
-                    width: result.images.fixed_width.width,
-                    title: result.title
-                  });
-                }
-                return dispatch({
-                  type: "update",
-                  data: {
-                    ...state,
-                    ...entry
-                  }
-                });
-              });
-          }
-          break;
-        default:
-          return dispatch(action as ArchiveAction);
-      }
-    },
-    [state, dispatch]
+  const [giphySearchParams, dispatchGiphySearchParamsAction] = useReducer(
+    giphySearchParamsReducer,
+    config.defaults.defaultSearchParams
   );
-  const { searchQuery } = useParams();
+  const { offset } = giphySearchParams;
+  const [giphySearchResults, dispatchGiphySearchResultsAction] = useReducer(
+    giphySearchResultsReducer,
+    config.defaults.defaultSearchResults
+  );
+  const { pathname } = useLocation();
+  const searchQuery = pathname ? pathname.slice(1) : "";
+  const dispatchGiphySearchAction = dispatchGiphySearchWrapper(
+    dispatchGiphySearchResultsAction
+  );
   useEffect(() => {
-    if (searchQuery && searchQuery.length > 0) {
-      const action: GalleryAction = {
-        type: "fetch",
-        data: { ...config.defaultQuery, searchQuery }
-      };
-      dispatchProxy(action);
+    if (searchQuery) {
+      dispatchGiphySearchParamsAction(updateSearchQuery(searchQuery));
+      dispatchGiphySearchAction(search({ ...giphySearchParams, searchQuery }));
     }
-  }, [searchQuery, dispatchProxy]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      dispatchGiphySearchAction(searchMore(giphySearchParams));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset]);
+
   return (
-    <GalleryContext.Provider value={{ state, dispatch: dispatchProxy }}>
+    <GalleryContext.Provider
+      value={{
+        state: { giphySearchParams, giphySearchResults },
+        dispatch: dispatchGiphySearchParamsAction
+      }}
+    >
       {children}
     </GalleryContext.Provider>
   );

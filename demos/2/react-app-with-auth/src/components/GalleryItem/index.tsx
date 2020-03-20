@@ -1,7 +1,11 @@
 import React from "react";
 import { Card, CardImg, Spinner } from "reactstrap";
+import { GiphySearchResult, GIFObject } from "../../types/giphy";
 
-const Item: React.FC<ItemProps> = ({ experience }) => {
+interface GalleryItemProps {
+  experience: GIFObject;
+}
+const GalleryItem: React.FC<GalleryItemProps> = ({ experience }) => {
   const [isLoaded, updateStatus] = React.useState(false);
   return (
     <Card
@@ -18,19 +22,19 @@ const Item: React.FC<ItemProps> = ({ experience }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                height: `${experience.height}px`,
-                width: `${experience.width}px`
+                minHeight: `${experience.images.fixed_width.height}px`,
+                minWidth: `${experience.images.fixed_width.width}px`
               }
         }
       >
-        <Spinner type="border" role="status" color="light"/>
+        <Spinner type="border" role="status" color="light" />
       </div>
       <CardImg
-        src={experience.url}
+        src={experience.images.fixed_width.url}
         onLoad={() => updateStatus(true)}
         style={isLoaded ? {} : { display: "none" }}
       />
     </Card>
   );
 };
-export default Item;
+export default GalleryItem;

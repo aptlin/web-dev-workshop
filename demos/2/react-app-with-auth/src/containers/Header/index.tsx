@@ -5,6 +5,7 @@ import AuthButton from "../../components/AuthButton";
 import Logo from "../../components/Logo";
 import Search from "../../components/Search";
 import "./index.css";
+import ErrorBoundary from "../../components/ErrorBoundary";
 
 const Header: React.FC = () => {
   return (
@@ -13,8 +14,10 @@ const Header: React.FC = () => {
         <Logo />
         <span className="brandname">Moodie</span>
       </Link>
-      <Search />
-      <AuthButton />
+      <ErrorBoundary>
+        <Search />
+        <AuthButton />
+      </ErrorBoundary>
     </Navbar>
   );
 };

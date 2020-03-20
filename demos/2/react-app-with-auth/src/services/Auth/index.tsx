@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/browser";
 import createAuth0Client from "@auth0/auth0-spa-js";
 import Auth0Client from "@auth0/auth0-spa-js/dist/typings/Auth0Client";
 import React, { useContext, useEffect, useState } from "react";
@@ -27,7 +28,7 @@ interface Auth0ProviderOptions {
   children: React.ReactElement;
 }
 
-export const Auth0Context = React.createContext<Auth0Context | null>(null);
+const Auth0Context = React.createContext<Auth0Context | null>(null);
 export const useAuth0 = () => useContext(Auth0Context)!;
 export const Auth0Provider = ({
   children,
@@ -70,7 +71,7 @@ export const Auth0Provider = ({
         try {
           ({ appState } = await auth0FromHook.handleRedirectCallback());
         } catch (error) {
-          console.log(error);
+          Sentry.captureException(error);
         } finally {
           onRedirectCallback(appState);
         }
@@ -88,7 +89,7 @@ export const Auth0Provider = ({
     };
 
     initAuth0();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loginWithPopup = async (options?: PopupLoginOptions) => {

@@ -20,7 +20,6 @@ const AuthButton: React.FC = ({ ...props }) => {
     user
   } = useAuth0();
 
-  console.log(user);
   const onClick: EventHandler<SyntheticEvent<HTMLAnchorElement>> = async e => {
     e.preventDefault();
     if (!isInitializing) {
@@ -30,7 +29,6 @@ const AuthButton: React.FC = ({ ...props }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
-  console.log(user);
 
   return (
     <div id="auth-button">
