@@ -108,6 +108,7 @@ export function loadNextBatch(batchSize: number) {
     if (offset >= totalCount) {
       return;
     }
+    giphySearchParams.offset = offset;
 
     dispatch(updateSearchOffset(offset));
 
