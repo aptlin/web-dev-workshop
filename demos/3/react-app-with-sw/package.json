@@ -28,11 +28,13 @@
     "react-scripts": "3.4.0",
     "reactstrap": "^8.4.1",
     "typescript": "^3.8.3",
+    "workbox-google-analytics": "^5.1.2",
     "yup": "^0.28.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:favicons": "node scripts/favicons",
+    "build": "npm run build:favicons && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -57,6 +59,8 @@
     "@types/react-router-dom": "^5.1.3",
     "@types/reactstrap": "^8.4.2",
     "@types/yup": "^0.26.32",
+    "dotenv": "^8.2.0",
+    "favicons": "^6.0.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
     "prettier": "^2.0.4"

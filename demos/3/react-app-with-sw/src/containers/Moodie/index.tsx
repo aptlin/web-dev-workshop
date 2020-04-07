@@ -1,19 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { Button, Col, Container, Row } from 'reactstrap';
+import { addFavorite, removeFavorite } from '../../actions/favorites';
+import { loadNextBatch } from '../../actions/search';
 import ErrorBoundary from '../../components/ErrorBoundary';
-import About from '../../pages/About';
-import { GalleryContextConsumer } from '../../services/Gallery';
-import Favorites from '../Favorites';
-import Header from '../Header';
-import './index.css';
-import { useFavorites } from '../../services/Favorites';
-import { removeFavorite, addFavorite } from '../../actions/favorites';
-import Gallery from '../Gallery';
+import Header from '../../components/Header';
 import InfiniteScroll from '../../components/InfiniteScroll';
 import config from '../../config';
-import { loadNextBatch } from '../../actions/search';
+import About from '../../pages/About';
+import { useFavorites } from '../../services/Favorites';
+import { GalleryContextConsumer } from '../../services/Gallery';
+import Favorites from '../Favorites';
+import Gallery from '../Gallery';
+import './index.css';
+
 interface MoodieProps extends RouteComponentProps {
   experienceName: string;
 }
