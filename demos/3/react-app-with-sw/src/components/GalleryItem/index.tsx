@@ -1,12 +1,26 @@
-import React from 'react';
-import { Card, CardImg, Spinner } from 'reactstrap';
+import React, { useState } from 'react';
+import Img from 'react-image';
+import VisibilitySensor from 'react-visibility-sensor';
+import { Card } from 'reactstrap';
 import { GIFObject } from '../../types/giphy';
-
+import { ImageLoader } from '../ImageLoader';
 interface GalleryItemProps {
   experience: GIFObject;
 }
 const GalleryItem: React.FC<GalleryItemProps> = ({ experience }) => {
-  const [isLoaded, updateStatus] = React.useState(false);
+  const [isSeen, setSeen] = useState(false);
+  const loader = (
+    <ImageLoader
+      minHeight={`${experience.images.fixed_width.height}px`}
+      minWidth={`${experience.images.fixed_width.width}px`}
+    />
+  );
+  const onVisible = (isVisible: boolean) => {
+    if (isVisible && !isSeen) {
+      setSeen(true);
+    }
+    return;
+  };
   return (
     <Card
       style={{
@@ -15,27 +29,17 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ experience }) => {
         margin: '5px',
       }}
     >
-      <div
-        className="item-placeholder"
-        style={
-          isLoaded
-            ? { display: 'none' }
-            : {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minHeight: `${experience.images.fixed_width.height}px`,
-                minWidth: `${experience.images.fixed_width.width}px`,
-              }
-        }
-      >
-        <Spinner type="border" role="status" color="light" />
-      </div>
-      <CardImg
-        src={experience.images.fixed_width.url}
-        onLoad={() => updateStatus(true)}
-        style={isLoaded ? {} : { display: 'none' }}
-      />
+      <VisibilitySensor partialVisibility={true} onChange={onVisible}>
+        {isSeen ? (
+          <Img
+            src={experience.images.fixed_width.url}
+            loader={loader}
+            style={{ flexShrink: 0, width: '100%' }}
+          />
+        ) : (
+          loader
+        )}
+      </VisibilitySensor>
     </Card>
   );
 };

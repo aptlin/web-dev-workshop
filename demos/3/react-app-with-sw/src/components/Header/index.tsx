@@ -15,8 +15,12 @@ const Header: React.FC = () => {
         <span className="brandname">Moodie</span>
       </Link>
       <ErrorBoundary>
-        <Search />
-        <AuthButton />
+        <div className="first-on-big-second-on-small">
+          <Search />
+        </div>
+        <div className="second-on-big-first-on-small">
+          <AuthButton />
+        </div>
       </ErrorBoundary>
     </Navbar>
   );

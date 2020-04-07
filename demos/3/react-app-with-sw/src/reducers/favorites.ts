@@ -21,18 +21,21 @@ export const userFavoritesReducer: Reducer<UserFavorites, FavoritesAction> = (
       if (action.payload) {
         const liked = new Set(state.liked);
         liked.add(action.payload);
-        return { ...state, liked };
+        return { ...state, liked: Array.from(liked) };
       } else {
         return state;
       }
 
     case REMOVE_FAVORITE_ACTION:
-      if (action.payload && state.liked.has(action.payload)) {
-        const liked = new Set(state.liked);
-        const usedToLike = new Set(state.usedToLike);
-        usedToLike.add(action.payload);
-        liked.delete(action.payload);
-        return { liked, usedToLike };
+      const index = state.liked.indexOf(action.payload!);
+      if (index > -1) {
+        return {
+          ...state,
+          liked: [
+            ...state.liked.slice(0, index),
+            ...state.liked.slice(index + 1),
+          ],
+        };
       } else {
         return state;
       }

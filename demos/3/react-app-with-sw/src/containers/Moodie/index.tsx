@@ -1,14 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, Suspense } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
-import { Button, Col, Container, Row } from 'reactstrap';
+import { Button, Col, Container, Row, Spinner } from 'reactstrap';
 import { addFavorite, removeFavorite } from '../../actions/favorites';
 import { loadNextBatch } from '../../actions/search';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import Header from '../../components/Header';
 import InfiniteScroll from '../../components/InfiniteScroll';
 import config from '../../config';
-import About from '../../pages/About';
 import { useFavorites } from '../../services/Favorites';
 import { GalleryContextConsumer } from '../../services/Gallery';
 import Favorites from '../Favorites';
@@ -19,12 +18,11 @@ interface MoodieProps extends RouteComponentProps {
   experienceName: string;
 }
 
+const About = React.lazy(() => import('../../pages/About'));
 const Moodie: React.FC<MoodieProps> = () => {
   const { searchQuery } = useParams();
   const { state: favoritesState, dispatch: favoritesDispatch } = useFavorites();
-  const [batchSize, updateBatchSize] = useState<number>(
-    config.constants.SEARCH_BATCH_SIZE,
-  );
+  const [batchSize] = useState<number>(config.constants.SEARCH_BATCH_SIZE);
   const fetchMore = useCallback(loadNextBatch(batchSize), [batchSize]);
   return (
     <Container fluid={true} className="p-4">
@@ -39,7 +37,15 @@ const Moodie: React.FC<MoodieProps> = () => {
               {({ state, dispatch }) => {
                 const { giphySearchResults: log } = state;
                 if (!searchQuery) {
-                  return <About />;
+                  return (
+                    <Suspense
+                      fallback={
+                        <Spinner type="border" role="status" color="dark" />
+                      }
+                    >
+                      <About />
+                    </Suspense>
+                  );
                 } else if (log.searchQuery === searchQuery) {
                   return (
                     <>
@@ -49,7 +55,7 @@ const Moodie: React.FC<MoodieProps> = () => {
                           <span>{log.searchQuery}</span>
                         </Col>
                         <Col xs="auto" className="mr-auto pb-2 pt-2">
-                          {favoritesState.liked.has(searchQuery) ? (
+                          {favoritesState.liked.indexOf(searchQuery) > -1 ? (
                             <Button
                               color="danger"
                               onClick={() =>

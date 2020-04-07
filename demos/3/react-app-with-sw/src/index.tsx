@@ -26,7 +26,7 @@ if (
 }
 
 const TrackedMoodie = withTracker(Moodie);
-ReactDOM.render(
+const App: React.FC = () => (
   <Router>
     <Auth0Provider
       domain={auth0Domain}
@@ -43,8 +43,15 @@ ReactDOM.render(
         </FavoritesContextProvider>
       </GalleryContextProvider>
     </Auth0Provider>
-  </Router>,
-  document.getElementById('root'),
+  </Router>
 );
+
+const rootElement = document.getElementById('root');
+
+if (rootElement!.hasChildNodes()) {
+  ReactDOM.hydrate(<App />, rootElement);
+} else {
+  ReactDOM.render(<App />, rootElement);
+}
 
 serviceWorker.register();

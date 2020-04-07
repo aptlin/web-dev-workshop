@@ -11,7 +11,7 @@ const Favorites: React.FC = () => {
   return (
     <Jumbotron>
       <p className={'text-nowrap'}>
-        <strong>Favorites ({liked.size})</strong>
+        <strong>Favorites ({liked.length})</strong>
       </p>
       {Array.from(liked).map((favorite) => (
         <h5 className="d-flex" key={favorite}>

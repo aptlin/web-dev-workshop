@@ -6,8 +6,7 @@ export const REMOVE_FAVORITE_ACTION = FAVORITES_ACTION_TYPES.REMOVE_FAVORITE;
 export const RESET_FAVORITES_ACTION = FAVORITES_ACTION_TYPES.RESET_FAVORITES;
 
 export interface UserFavorites {
-  liked: Set<string>;
-  usedToLike: Set<string>;
+  liked: string[];
 }
 
 export type FavoriteActionType =

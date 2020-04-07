@@ -22,3 +22,12 @@
 .navbar-brand-link:link {
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+  .first-on-big-second-on-small {
+    order: 1;
+  }
+  .first-on-big-second-on-small {
+    order: 2;
+  }
+}
