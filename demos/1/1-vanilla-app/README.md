@@ -2,9 +2,9 @@
   <img src="./assets/logo.svg" width=100>
 </div>
 
-# Building a moodboard with Bulma & pure HTML ([live demo](https://html-moodie.netlify.com))
+# Building a moodboard with Bulma & pure HTML ([live demo](https://html-moodie.netlify.app))
 
-![Moodie: front page](./assets/example.png) 
+![Moodie: front page](./assets/example.png)
 
 ## Setup
 

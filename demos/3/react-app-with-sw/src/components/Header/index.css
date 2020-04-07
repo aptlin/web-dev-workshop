@@ -1,0 +1,24 @@
+.brandname {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  font-size: 2rem;
+  padding: 1rem !important;
+  color: #000;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+  margin-bottom: 1rem;
+}
+.navbar-brand-link {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+.navbar-brand-link:link {
+  text-decoration: none;
+}
