@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   Card,
   CardBody,
   CardDeck,
   CardImg,
   CardText,
-  Container
-} from "reactstrap";
+  Container,
+} from 'reactstrap';
 
 const About = () => {
   return (
@@ -20,8 +20,8 @@ const About = () => {
             </CardText>
           </CardBody>
           <CardImg
-            height={"200"}
-            style={{ objectFit: "contain" }}
+            height={'200'}
+            style={{ objectFit: 'contain' }}
             src="https://source.unsplash.com/random/200×200/?optimism"
           />
         </Card>
@@ -30,8 +30,8 @@ const About = () => {
             <CardText>Save favorites and enjoy! </CardText>
           </CardBody>
           <CardImg
-            height={"200"}
-            style={{ objectFit: "contain" }}
+            height={'200'}
+            style={{ objectFit: 'contain' }}
             src="https://source.unsplash.com/random/200×200/?joy"
           />
         </Card>
@@ -42,9 +42,9 @@ const About = () => {
             </CardText>
           </CardBody>
           <CardImg
-            height={"200"}
+            height={'200'}
             src="https://source.unsplash.com/random/200×200/?adventure"
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: 'contain' }}
           />
         </Card>
       </CardDeck>

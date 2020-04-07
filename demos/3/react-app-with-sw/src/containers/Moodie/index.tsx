@@ -1,19 +1,19 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState, useCallback } from "react";
-import { RouteComponentProps, useParams } from "react-router-dom";
-import { Button, Col, Container, Row } from "reactstrap";
-import ErrorBoundary from "../../components/ErrorBoundary";
-import About from "../../pages/About";
-import { GalleryContextConsumer } from "../../services/Gallery";
-import Favorites from "../Favorites";
-import Header from "../Header";
-import "./index.css";
-import { useFavorites } from "../../services/Favorites";
-import { removeFavorite, addFavorite } from "../../actions/favorites";
-import Gallery from "../Gallery";
-import InfiniteScroll from "../../components/InfiniteScroll";
-import config from "../../config";
-import { loadNextBatch } from "../../actions/search";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useCallback } from 'react';
+import { RouteComponentProps, useParams } from 'react-router-dom';
+import { Button, Col, Container, Row } from 'reactstrap';
+import ErrorBoundary from '../../components/ErrorBoundary';
+import About from '../../pages/About';
+import { GalleryContextConsumer } from '../../services/Gallery';
+import Favorites from '../Favorites';
+import Header from '../Header';
+import './index.css';
+import { useFavorites } from '../../services/Favorites';
+import { removeFavorite, addFavorite } from '../../actions/favorites';
+import Gallery from '../Gallery';
+import InfiniteScroll from '../../components/InfiniteScroll';
+import config from '../../config';
+import { loadNextBatch } from '../../actions/search';
 interface MoodieProps extends RouteComponentProps {
   experienceName: string;
 }
@@ -22,7 +22,7 @@ const Moodie: React.FC<MoodieProps> = () => {
   const { searchQuery } = useParams();
   const { state: favoritesState, dispatch: favoritesDispatch } = useFavorites();
   const [batchSize, updateBatchSize] = useState<number>(
-    config.constants.SEARCH_BATCH_SIZE
+    config.constants.SEARCH_BATCH_SIZE,
   );
   const fetchMore = useCallback(loadNextBatch(batchSize), [batchSize]);
   return (

@@ -16,7 +16,7 @@
 
 .heart:before,
 .heart:after {
-  content: "";
+  content: '';
   background-color: var(--color);
   border-radius: 50%;
   height: var(--heart-size);

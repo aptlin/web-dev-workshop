@@ -1,6 +1,6 @@
-import config from "../../config";
-import { RequestService } from "../Request";
-import { GiphySearchParams } from "../../types/giphy";
+import config from '../../config';
+import { RequestService } from '../Request';
+import { GiphySearchParams } from '../../types/giphy';
 
 export class GiphyService {
   static search(params: GiphySearchParams) {
@@ -11,12 +11,12 @@ export class GiphyService {
       limit,
       offset,
       rating,
-      lang
+      lang,
     };
 
     return RequestService.get(
       `${config.constants.GIPHY_API_SEARCH}`,
-      searchParams
+      searchParams,
     );
   }
 }

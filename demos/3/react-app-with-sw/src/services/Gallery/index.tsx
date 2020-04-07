@@ -1,38 +1,38 @@
-import React, { createContext, useEffect, useReducer } from "react";
-import { useLocation } from "react-router-dom";
+import React, { createContext, useEffect, useReducer } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   dispatchGiphySearchWrapper,
   search,
-  searchMore
-} from "../../actions/search";
-import { updateSearchQuery } from "../../actions/searchParams";
-import config from "../../config";
-import { giphySearchParamsReducer } from "../../reducers/giphySearchParams";
-import { giphySearchResultsReducer } from "../../reducers/giphySearchResults";
-import { GalleryState } from "../../types/gallery";
+  searchMore,
+} from '../../actions/search';
+import { updateSearchQuery } from '../../actions/searchParams';
+import config from '../../config';
+import { giphySearchParamsReducer } from '../../reducers/giphySearchParams';
+import { giphySearchResultsReducer } from '../../reducers/giphySearchResults';
+import { GalleryState } from '../../types/gallery';
 
 const GalleryContext = createContext<GalleryState>({
   state: {
     giphySearchResults: config.defaults.defaultSearchResults,
-    giphySearchParams: config.defaults.defaultSearchParams
+    giphySearchParams: config.defaults.defaultSearchParams,
   },
-  dispatch: () => {}
+  dispatch: () => {},
 });
 
 const GalleryContextProvider: React.FC = ({ children }) => {
   const [giphySearchParams, dispatchGiphySearchParamsAction] = useReducer(
     giphySearchParamsReducer,
-    config.defaults.defaultSearchParams
+    config.defaults.defaultSearchParams,
   );
   const { offset } = giphySearchParams;
   const [giphySearchResults, dispatchGiphySearchResultsAction] = useReducer(
     giphySearchResultsReducer,
-    config.defaults.defaultSearchResults
+    config.defaults.defaultSearchResults,
   );
   const { pathname } = useLocation();
-  const searchQuery = pathname ? pathname.slice(1) : "";
+  const searchQuery = pathname ? pathname.slice(1) : '';
   const dispatchGiphySearchAction = dispatchGiphySearchWrapper(
-    dispatchGiphySearchResultsAction
+    dispatchGiphySearchResultsAction,
   );
   useEffect(() => {
     if (searchQuery) {
@@ -53,7 +53,7 @@ const GalleryContextProvider: React.FC = ({ children }) => {
     <GalleryContext.Provider
       value={{
         state: { giphySearchParams, giphySearchResults },
-        dispatch: dispatchGiphySearchParamsAction
+        dispatch: dispatchGiphySearchParamsAction,
       }}
     >
       {children}

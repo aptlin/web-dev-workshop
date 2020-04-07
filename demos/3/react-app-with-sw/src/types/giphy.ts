@@ -1,8 +1,8 @@
 import {
   SearchPromiseActionType,
   SearchParamsActionType,
-  SearchActionType
-} from "./search";
+  SearchActionType,
+} from './search';
 
 export interface GiphySearchParamsAction {
   type: SearchParamsActionType;
@@ -194,7 +194,7 @@ export interface UserObject {
 export interface ChildPackObject {
   id: number;
   parent: number;
-  type: "community" | "editorial";
+  type: 'community' | 'editorial';
   slug: string;
   display_name: string;
   short_display_name: string;

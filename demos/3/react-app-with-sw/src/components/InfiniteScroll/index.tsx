@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import config from "../../config";
+import React, { useEffect } from 'react';
+import config from '../../config';
 
 export interface InfiniteScrollProps {
   onFetchMore?: () => void;
@@ -20,8 +20,8 @@ const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
         onFetchMore();
       }
     };
-    window.addEventListener("scroll", onScroll, false);
-    return () => window.removeEventListener("scroll", onScroll, false);
+    window.addEventListener('scroll', onScroll, false);
+    return () => window.removeEventListener('scroll', onScroll, false);
   }, []);
   return <div>{children}</div>;
 };

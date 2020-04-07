@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import * as Sentry from "@sentry/browser";
-import { Button } from "reactstrap";
+import React, { Component } from 'react';
+import * as Sentry from '@sentry/browser';
+import { Button } from 'reactstrap';
 
 type ErrorBoundaryProps = {};
 type ErrorBoundaryState = {
@@ -19,7 +19,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: any, errorInfo: any) {
-    Sentry.withScope(scope => {
+    Sentry.withScope((scope) => {
       scope.setExtras(errorInfo);
       const eventId = Sentry.captureException(error);
       this.setState({ eventId });

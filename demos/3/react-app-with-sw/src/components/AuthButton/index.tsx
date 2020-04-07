@@ -1,15 +1,15 @@
-import React, { EventHandler, SyntheticEvent, useState } from "react";
+import React, { EventHandler, SyntheticEvent, useState } from 'react';
 import {
   Spinner,
   Button,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
-} from "reactstrap";
-import { useAuth0 } from "../../services/Auth";
-import "./index.css";
-import ProfilePicture from "../ProfilePicture";
+  DropdownItem,
+} from 'reactstrap';
+import { useAuth0 } from '../../services/Auth';
+import './index.css';
+import ProfilePicture from '../ProfilePicture';
 
 const AuthButton: React.FC = ({ ...props }) => {
   const {
@@ -17,10 +17,12 @@ const AuthButton: React.FC = ({ ...props }) => {
     isInitializing,
     isAuthenticated,
     logout,
-    user
+    user,
   } = useAuth0();
 
-  const onClick: EventHandler<SyntheticEvent<HTMLAnchorElement>> = async e => {
+  const onClick: EventHandler<SyntheticEvent<HTMLAnchorElement>> = async (
+    e,
+  ) => {
     e.preventDefault();
     if (!isInitializing) {
       isAuthenticated ? logout() : await loginWithPopup();
@@ -28,7 +30,7 @@ const AuthButton: React.FC = ({ ...props }) => {
   };
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen(prevState => !prevState);
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   return (
     <div id="auth-button">
@@ -37,7 +39,7 @@ const AuthButton: React.FC = ({ ...props }) => {
       ) : isAuthenticated && user ? (
         <Dropdown isOpen={dropdownOpen} toggle={toggle} {...props}>
           <DropdownToggle color="light" caret>
-            <ProfilePicture src={user.picture || ""} />
+            <ProfilePicture src={user.picture || ''} />
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem onClick={onClick} color="danger" {...props}>

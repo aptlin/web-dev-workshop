@@ -1,17 +1,17 @@
-import { Reducer } from "react";
+import { Reducer } from 'react';
 import {
   ADD_FAVORITE_ACTION,
   FavoritesAction,
   REMOVE_FAVORITE_ACTION,
   UserFavorites,
-  RESET_FAVORITES_ACTION
-} from "../types/favorites";
-import config from "../config";
+  RESET_FAVORITES_ACTION,
+} from '../types/favorites';
+import config from '../config';
 
 const defaultUserFavorites: UserFavorites = config.defaults.defaultFavorites;
 export const userFavoritesReducer: Reducer<UserFavorites, FavoritesAction> = (
   state,
-  action
+  action,
 ) => {
   switch (action.type) {
     case RESET_FAVORITES_ACTION:

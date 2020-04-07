@@ -2,8 +2,8 @@ import {
   GiphySearchResult,
   GiphySearchParams,
   GiphyActionDispatch,
-  GiphySearchParamsAction
-} from "./giphy";
+  GiphySearchParamsAction,
+} from './giphy';
 
 export interface ArchiveState {
   giphySearchResults: GiphySearchResult;

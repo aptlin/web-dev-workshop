@@ -1,11 +1,11 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from 'react';
 
 export const SCREEN_SIZES = {
-  xl: { id: "xl", mediaQuery: "(min-width: 1200px)" },
-  lg: { id: "lg", mediaQuery: "(max-width: 1200px) and (min-width: 960px)" },
-  md: { id: "md", mediaQuery: "(max-width: 950px) and (min-width: 720px)" },
-  sm: { id: "sm", mediaQuery: "(max-width: 720px) and (min-width: 540px)" },
-  xs: { id: "xs", mediaQuery: "(max-width: 540px)" }
+  xl: { id: 'xl', mediaQuery: '(min-width: 1200px)' },
+  lg: { id: 'lg', mediaQuery: '(max-width: 1200px) and (min-width: 960px)' },
+  md: { id: 'md', mediaQuery: '(max-width: 950px) and (min-width: 720px)' },
+  sm: { id: 'sm', mediaQuery: '(max-width: 720px) and (min-width: 540px)' },
+  xs: { id: 'xs', mediaQuery: '(max-width: 540px)' },
 };
 
 export const SUPPORTED_COLUMNS_NUMS = [1, 2, 3, 4, 6, 12];
@@ -38,9 +38,9 @@ export function useWindowSize() {
     function updateSize() {
       setSize([window.innerHeight, window.innerWidth]);
     }
-    window.addEventListener("resize", updateSize);
+    window.addEventListener('resize', updateSize);
     updateSize();
-    return () => window.removeEventListener("resize", updateSize);
+    return () => window.removeEventListener('resize', updateSize);
   }, []);
   return size;
 }

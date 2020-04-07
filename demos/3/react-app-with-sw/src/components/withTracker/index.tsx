@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import ReactGA, { FieldsObject } from "react-ga";
-import { RouteComponentProps } from "react-router-dom";
-import config from "../../config";
+import React, { useEffect } from 'react';
+import ReactGA, { FieldsObject } from 'react-ga';
+import { RouteComponentProps } from 'react-router-dom';
+import config from '../../config';
 
 ReactGA.initialize(config.constants.GA_KEY);
 export const withTracker = <P extends RouteComponentProps>(
   WrappedComponent: React.ComponentType<P>,
-  options: FieldsObject = {}
+  options: FieldsObject = {},
 ) => {
   const trackPage = (page: string) => {
     ReactGA.set({ page, ...options });

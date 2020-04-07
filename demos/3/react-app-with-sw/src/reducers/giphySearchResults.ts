@@ -1,6 +1,6 @@
-import { Reducer } from "react";
-import config from "../config";
-import { GiphySearchPromiseAction, GiphySearchResult } from "../types/giphy";
+import { Reducer } from 'react';
+import config from '../config';
+import { GiphySearchPromiseAction, GiphySearchResult } from '../types/giphy';
 import {
   FULFILLED_SEARCH_ACTION,
   FULFILLED_SEARCH_MORE_ACTION,
@@ -8,8 +8,8 @@ import {
   PENDING_SEARCH_MORE_ACTION,
   REJECTED_SEARCH_ACTION,
   REJECTED_SEARCH_MORE_ACTION,
-  SEARCH_RESET_ACTION
-} from "../types/search";
+  SEARCH_RESET_ACTION,
+} from '../types/search';
 
 const defaultSearchResults = config.defaults
   .defaultSearchResults as GiphySearchResult;
@@ -29,7 +29,7 @@ export const giphySearchResultsReducer: Reducer<
         ...state,
         isLoading: true,
         isFetchingMore: false,
-        error: false
+        error: false,
       };
 
     case PENDING_SEARCH_MORE_ACTION:
@@ -37,7 +37,7 @@ export const giphySearchResultsReducer: Reducer<
         ...state,
         isLoading: false,
         isFetchingMore: true,
-        error: false
+        error: false,
       };
 
     case FULFILLED_SEARCH_ACTION:
@@ -49,7 +49,7 @@ export const giphySearchResultsReducer: Reducer<
         meta: payloadData.meta,
         isLoading: false,
         isFetchingMore: false,
-        error: false
+        error: false,
       };
 
     case FULFILLED_SEARCH_MORE_ACTION:
@@ -60,7 +60,7 @@ export const giphySearchResultsReducer: Reducer<
         meta: payloadData.meta,
         isLoading: false,
         isFetchingMore: false,
-        error: false
+        error: false,
       };
 
     case REJECTED_SEARCH_ACTION:
@@ -68,7 +68,7 @@ export const giphySearchResultsReducer: Reducer<
         ...defaultSearchResults,
         isLoading: false,
         isFetchingMore: false,
-        error: true
+        error: true,
       };
 
     case REJECTED_SEARCH_MORE_ACTION:
@@ -76,7 +76,7 @@ export const giphySearchResultsReducer: Reducer<
         ...state,
         isLoading: false,
         isFetchingMore: false,
-        error: true
+        error: true,
       };
 
     default:

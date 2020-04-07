@@ -1,6 +1,6 @@
-import React from "react";
-import { Card, CardImg, Spinner } from "reactstrap";
-import { GIFObject } from "../../types/giphy";
+import React from 'react';
+import { Card, CardImg, Spinner } from 'reactstrap';
+import { GIFObject } from '../../types/giphy';
 
 interface GalleryItemProps {
   experience: GIFObject;
@@ -10,22 +10,22 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ experience }) => {
   return (
     <Card
       style={{
-        background: "#fff",
-        border: "none",
-        margin: "5px"
+        background: '#fff',
+        border: 'none',
+        margin: '5px',
       }}
     >
       <div
         className="item-placeholder"
         style={
           isLoaded
-            ? { display: "none" }
+            ? { display: 'none' }
             : {
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 minHeight: `${experience.images.fixed_width.height}px`,
-                minWidth: `${experience.images.fixed_width.width}px`
+                minWidth: `${experience.images.fixed_width.width}px`,
               }
         }
       >
@@ -34,7 +34,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ experience }) => {
       <CardImg
         src={experience.images.fixed_width.url}
         onLoad={() => updateStatus(true)}
-        style={isLoaded ? {} : { display: "none" }}
+        style={isLoaded ? {} : { display: 'none' }}
       />
     </Card>
   );

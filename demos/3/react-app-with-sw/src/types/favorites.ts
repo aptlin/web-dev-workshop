@@ -1,4 +1,4 @@
-import config from "../config";
+import config from '../config';
 const FAVORITES_ACTION_TYPES = config.actions.FAVORITES_ACTION_TYPES;
 
 export const ADD_FAVORITE_ACTION = FAVORITES_ACTION_TYPES.ADD_FAVORITE;

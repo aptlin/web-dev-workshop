@@ -1,4 +1,4 @@
-import config from "../config";
+import config from '../config';
 const SEARCH_ACTION_TYPES = config.actions.SEARCH_ACTION_TYPES;
 const SEARCH_PARAMS_ACTION_TYPES = config.actions.SEARCH_PARAMS_ACTION_TYPES;
 const ACTION_STATES = config.actions.ACTION_STATES;

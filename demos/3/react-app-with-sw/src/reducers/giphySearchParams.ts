@@ -1,11 +1,11 @@
-import config from "../config";
-import { Reducer } from "react";
-import { GiphySearchParams, GiphySearchParamsAction } from "../types/giphy";
+import config from '../config';
+import { Reducer } from 'react';
+import { GiphySearchParams, GiphySearchParamsAction } from '../types/giphy';
 import {
   SEARCH_RESET_ACTION,
   UPDATE_SEARCH_QUERY_ACTION,
-  UPDATE_SEARCH_OFFSET_ACTION
-} from "../types/search";
+  UPDATE_SEARCH_OFFSET_ACTION,
+} from '../types/search';
 
 const defaultSearchParams = config.defaults.defaultSearchParams;
 

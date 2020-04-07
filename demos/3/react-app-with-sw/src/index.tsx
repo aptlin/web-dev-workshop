@@ -1,14 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { withTracker } from "./components/withTracker";
-import config from "./config";
-import * as Sentry from "@sentry/browser";
-import Moodie from "./containers/Moodie";
-import { Auth0Provider } from "./services/Auth";
-import { GalleryContextProvider } from "./services/Gallery";
-import * as serviceWorker from "./serviceWorker";
-import { FavoritesContextProvider } from "./services/Favorites";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { withTracker } from './components/withTracker';
+import config from './config';
+import * as Sentry from '@sentry/browser';
+import Moodie from './containers/Moodie';
+import { Auth0Provider } from './services/Auth';
+import { GalleryContextProvider } from './services/Gallery';
+import * as serviceWorker from './serviceWorker';
+import { FavoritesContextProvider } from './services/Favorites';
 
 Sentry.init({ dsn: config.constants.SENTRY_DOMAIN });
 
@@ -22,7 +22,7 @@ if (
   auth0ClientId === undefined ||
   auth0Audience === undefined
 ) {
-  throw new Error("missing env vars");
+  throw new Error('missing env vars');
 }
 
 const TrackedMoodie = withTracker(Moodie);
@@ -44,7 +44,7 @@ ReactDOM.render(
       </GalleryContextProvider>
     </Auth0Provider>
   </Router>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

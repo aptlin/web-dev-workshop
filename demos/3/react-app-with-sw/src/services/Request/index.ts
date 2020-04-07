@@ -1,5 +1,5 @@
-import axios from "axios";
-import config from "../../config";
+import axios from 'axios';
+import config from '../../config';
 
 export class RequestService {
   static get(url: string, params = {}) {
@@ -8,7 +8,7 @@ export class RequestService {
 
   static getDefaultParams() {
     return {
-      timeout: config.constants.HTTP_REQUEST_TIMEOUT
+      timeout: config.constants.HTTP_REQUEST_TIMEOUT,
     };
   }
 }

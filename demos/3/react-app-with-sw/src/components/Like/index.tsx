@@ -1,5 +1,5 @@
-import React, { EventHandler, SyntheticEvent } from "react";
-import "./index.css";
+import React, { EventHandler, SyntheticEvent } from 'react';
+import './index.css';
 
 interface LikeProps {
   onClick: EventHandler<SyntheticEvent<HTMLSpanElement>>;

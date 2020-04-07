@@ -1,14 +1,14 @@
-import * as Sentry from "@sentry/browser";
-import createAuth0Client from "@auth0/auth0-spa-js";
-import Auth0Client from "@auth0/auth0-spa-js/dist/typings/Auth0Client";
-import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import * as Sentry from '@sentry/browser';
+import createAuth0Client from '@auth0/auth0-spa-js';
+import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 
 export interface Auth0RedirectState {
   targetUrl?: string;
 }
 
-export interface Auth0User extends Omit<IdToken, "__raw"> {}
+export interface Auth0User extends Omit<IdToken, '__raw'> {}
 
 interface Auth0Context {
   user?: Auth0User;
@@ -45,8 +45,8 @@ export const Auth0Provider = ({
   useEffect(() => {
     const onRedirectCallback = (redirectResult?: RedirectLoginResult) => {
       console.log(
-        "auth0 onRedirectCallback called with redirectState %o",
-        redirectResult
+        'auth0 onRedirectCallback called with redirectState %o',
+        redirectResult,
       );
 
       // Clears auth0 query string parameters from url
@@ -64,8 +64,8 @@ export const Auth0Provider = ({
       setAuth0Client(auth0FromHook);
 
       if (
-        location.search.includes("code=") &&
-        location.search.includes("state=")
+        location.search.includes('code=') &&
+        location.search.includes('state=')
       ) {
         let appState: RedirectLoginResult = {};
         try {
@@ -148,7 +148,7 @@ export const Auth0Provider = ({
         getTokenSilently,
         handleRedirectCallback,
         getIdTokenClaims,
-        getTokenWithPopup
+        getTokenWithPopup,
       }}
     >
       {children}
