@@ -18,12 +18,13 @@ const ThematicCard: React.FC<ThematicCardProps> = ({ text, theme }) => {
   const [isLoaded, updateStatus] = React.useState(false);
   const loader = <ImageLoader minHeight={`200px`} minWidth={`200px`} />;
   return (
-    <Card body className="mx-auto">
+    <Card body className="mx-auto rounded-lg">
       <CardBody className="text-left">
         <CardText>{text}</CardText>
       </CardBody>
       {isLoaded ? null : loader}
       <CardImg
+        className="rounded"
         style={{
           maxHeight: '200px',
           objectFit: 'contain',

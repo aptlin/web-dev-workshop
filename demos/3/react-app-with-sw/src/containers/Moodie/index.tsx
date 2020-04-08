@@ -16,6 +16,7 @@ import Favorites from '../Favorites';
 import Gallery from '../Gallery';
 import Suggestions from '../Suggestions';
 import './index.css';
+import Head from '../../components/Head';
 
 interface MoodieProps extends RouteComponentProps {
   experienceName: string;
@@ -46,8 +47,10 @@ const Moodie: React.FC<MoodieProps> = () => {
       loginWithPopup();
     }
   }, [user, searchQuery, loginWithPopup, favoritesDispatch, isFavorite]);
+  const pageTitle = searchQuery || '';
   return (
     <Container fluid={true} className="p-4">
+      <Head pageTitle={pageTitle} />
       <Header />
       <ErrorBoundary>
         <Row>

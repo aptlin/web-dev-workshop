@@ -1,9 +1,20 @@
 import { GiphySearchResult, GiphySearchParams } from './types/giphy';
 import { UserFavorites } from './types/favorites';
 import { STORAGE_TYPE } from './types/storage';
-
+import logo from './assets/logo.svg';
 const SEARCH_BATCH_SIZE = 25;
 const config = {
+  meta: {
+    siteUrl: process.env.PUBLIC_URL || 'https://moodie.netlify.app',
+    siteTitle: process.env.REACT_APP_SITE_TITLE || 'Moodie',
+    siteDescription:
+      'Moodie helps you feel better by finding content that matches your emotions.',
+    themeColor: process.env.REACT_APP_FAVICON_THEME_COLOR || '#fff',
+    logo,
+    social: {
+      twitter: 'sdllio',
+    },
+  },
   defaults: {
     defaultSearchParams: {
       searchQuery: '',
