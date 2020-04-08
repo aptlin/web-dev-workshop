@@ -38,7 +38,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build:favicons": "node scripts/favicons",
-    "build": "npm run build:favicons && react-scripts build",
+    "build:sitemap": "node scripts/sitemap",
+    "build:client": "react-scripts build",
+    "build": "npm run build:favicons && npm run build:client && npm run build:sitemap",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postbuild": "react-snap"
@@ -70,7 +72,8 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
     "prettier": "^2.0.4",
-    "react-snap": "^1.23.0"
+    "react-snap": "^1.23.0",
+    "xmlbuilder": "^15.1.0"
   },
   "husky": {
     "hooks": {
