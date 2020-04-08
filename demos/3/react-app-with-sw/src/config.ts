@@ -5,7 +5,7 @@ import logo from './assets/logo.svg';
 const SEARCH_BATCH_SIZE = 25;
 const config = {
   meta: {
-    siteUrl: process.env.PUBLIC_URL || 'https://moodie.netlify.app',
+    siteUrl: process.env.REACT_APP_PUBLIC_URL || 'https://moodie.netlify.app',
     siteTitle: process.env.REACT_APP_SITE_TITLE || 'Moodie',
     siteDescription:
       'Moodie helps you feel better by finding content that matches your emotions.',

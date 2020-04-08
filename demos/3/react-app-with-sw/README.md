@@ -1,5 +1,7 @@
 # Building a moodboard with React & Reactstrap ([live demo](https://base-moodie.netlify.app))
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f79f4284-8f15-4d58-a196-f772647b69b1/deploy-status)](https://app.netlify.com/sites/offline-moodie/deploys)
+
 ## Setup
 
 1. Obtain a Giphy API key by following [the instructions](https://support.giphy.com/hc/en-us/articles/360020283431-Request-A-GIPHY-API-Key).
