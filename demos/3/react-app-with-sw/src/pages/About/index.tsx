@@ -6,7 +6,6 @@ import {
   CardImg,
   CardText,
   Container,
-  CardImgOverlay,
 } from 'reactstrap';
 import { ImageLoader } from '../../components/ImageLoader';
 

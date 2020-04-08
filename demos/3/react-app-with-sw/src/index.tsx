@@ -10,6 +10,13 @@ import { GalleryContextProvider } from './services/Gallery';
 import * as serviceWorker from './serviceWorker';
 import { FavoritesContextProvider } from './services/Favorites';
 
+const storageType = config.constants.STORAGE_TYPE;
+
+if (storageType === 'local') {
+  const localforage = require('localforage');
+  localforage.config(config.defaults.defaultLocalforageConfig);
+}
+
 Sentry.init({ dsn: config.constants.SENTRY_DOMAIN });
 
 const auth0Domain = config.constants.AUTH0_DOMAIN;
@@ -50,8 +57,7 @@ const rootElement = document.getElementById('root');
 
 if (rootElement!.hasChildNodes()) {
   ReactDOM.hydrate(<App />, rootElement);
+  serviceWorker.register();
 } else {
   ReactDOM.render(<App />, rootElement);
 }
-
-serviceWorker.register();

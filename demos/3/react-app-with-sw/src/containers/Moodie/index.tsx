@@ -1,17 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useCallback, useState, Suspense } from 'react';
+import React, { Suspense, useCallback, useState } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
-import { Button, Col, Container, Row, Spinner } from 'reactstrap';
+import { Badge, Col, Container, Row, Spinner } from 'reactstrap';
 import { addFavorite, removeFavorite } from '../../actions/favorites';
 import { loadNextBatch } from '../../actions/search';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import Header from '../../components/Header';
 import InfiniteScroll from '../../components/InfiniteScroll';
+import ToggleFavoriteButton from '../../components/ToggleFavoriteButton';
 import config from '../../config';
+import { useAuth0 } from '../../services/Auth';
 import { useFavorites } from '../../services/Favorites';
 import { GalleryContextConsumer } from '../../services/Gallery';
 import Favorites from '../Favorites';
 import Gallery from '../Gallery';
+import Suggestions from '../Suggestions';
 import './index.css';
 
 interface MoodieProps extends RouteComponentProps {
@@ -19,18 +22,38 @@ interface MoodieProps extends RouteComponentProps {
 }
 
 const About = React.lazy(() => import('../../pages/About'));
+
 const Moodie: React.FC<MoodieProps> = () => {
+  const { user, loginWithPopup } = useAuth0();
   const { searchQuery } = useParams();
   const { state: favoritesState, dispatch: favoritesDispatch } = useFavorites();
   const [batchSize] = useState<number>(config.constants.SEARCH_BATCH_SIZE);
   const fetchMore = useCallback(loadNextBatch(batchSize), [batchSize]);
+  const isFavorite = React.useCallback(() => {
+    return Boolean(
+      searchQuery && favoritesState.liked.indexOf(searchQuery) > -1,
+    );
+  }, [searchQuery, favoritesState]);
+  const toggleFavorite = React.useCallback(() => {
+    if (user) {
+      const { email } = user;
+      if (searchQuery) {
+        isFavorite()
+          ? favoritesDispatch(removeFavorite(searchQuery, email))
+          : favoritesDispatch(addFavorite(searchQuery, email));
+      }
+    } else {
+      loginWithPopup();
+    }
+  }, [user, searchQuery, loginWithPopup, favoritesDispatch, isFavorite]);
   return (
     <Container fluid={true} className="p-4">
       <Header />
       <ErrorBoundary>
         <Row>
           <Col md={{ size: 3 }}>
-            <Favorites />
+            {user ? <Favorites /> : null}
+            <Suggestions />
           </Col>
           <Col>
             <GalleryContextConsumer>
@@ -48,34 +71,25 @@ const Moodie: React.FC<MoodieProps> = () => {
                   );
                 } else if (log.searchQuery === searchQuery) {
                   return (
-                    <>
-                      <h4 className="row d-flex align-items-center">
-                        <Col xs="auto">Current experience:</Col>
+                    <Container>
+                      <Row className="align-items-center">
                         <Col xs="auto">
-                          <span>{log.searchQuery}</span>
+                          <h1 className="font-weight-bold mx-0 my-2">
+                            {log.searchQuery}
+                          </h1>
                         </Col>
-                        <Col xs="auto" className="mr-auto pb-2 pt-2">
-                          {favoritesState.liked.indexOf(searchQuery) > -1 ? (
-                            <Button
-                              color="danger"
-                              onClick={() =>
-                                favoritesDispatch(removeFavorite(searchQuery))
-                              }
-                            >
-                              Remove from favorites
-                            </Button>
-                          ) : (
-                            <Button
-                              color="warning"
-                              onClick={() =>
-                                favoritesDispatch(addFavorite(searchQuery))
-                              }
-                            >
-                              Add to favorites
-                            </Button>
-                          )}
+                        <Col xs="auto">
+                          <Badge className="mt-2 mx-0">
+                            {log.pagination!.total_count} GIFs
+                          </Badge>
                         </Col>
-                      </h4>
+                        <Col xs="auto">
+                          <ToggleFavoriteButton
+                            isFavorite={isFavorite}
+                            toggleFavorite={toggleFavorite}
+                          />
+                        </Col>
+                      </Row>
                       <InfiniteScroll
                         onFetchMore={() => {
                           fetchMore(state, dispatch);
@@ -83,7 +97,7 @@ const Moodie: React.FC<MoodieProps> = () => {
                       >
                         <Gallery log={log} />
                       </InfiniteScroll>
-                    </>
+                    </Container>
                   );
                 }
               }}

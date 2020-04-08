@@ -10,10 +10,10 @@ const Favorites: React.FC = () => {
   const { liked } = state;
   return (
     <Jumbotron>
-      <p className={'text-nowrap'}>
+      <h3 className={'text-nowrap'}>
         <strong>Favorites ({liked.length})</strong>
-      </p>
-      {Array.from(liked).map((favorite) => (
+      </h3>
+      {liked.map((favorite) => (
         <h5 className="d-flex" key={favorite}>
           <LikeButton
             onClick={() => {

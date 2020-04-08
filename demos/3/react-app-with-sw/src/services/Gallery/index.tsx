@@ -5,7 +5,10 @@ import {
   search,
   searchMore,
 } from '../../actions/search';
-import { updateSearchQuery } from '../../actions/searchParams';
+import {
+  updateSearchQuery,
+  updateSearchOffset,
+} from '../../actions/searchParams';
 import config from '../../config';
 import { giphySearchParamsReducer } from '../../reducers/giphySearchParams';
 import { giphySearchResultsReducer } from '../../reducers/giphySearchResults';
@@ -36,6 +39,7 @@ const GalleryContextProvider: React.FC = ({ children }) => {
   );
   useEffect(() => {
     if (searchQuery) {
+      dispatchGiphySearchParamsAction(updateSearchOffset(0));
       dispatchGiphySearchParamsAction(updateSearchQuery(searchQuery));
       dispatchGiphySearchAction(search({ ...giphySearchParams, searchQuery }));
     }

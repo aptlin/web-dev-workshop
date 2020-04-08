@@ -16,7 +16,8 @@ export type FavoriteActionType =
 
 export interface FavoritesAction {
   type: FavoriteActionType;
-  payload?: string;
+  payload?: string | string[];
+  email?: string;
 }
 
 export type FavoritesDispatch<T = FavoritesAction> = (action: T) => void;
