@@ -33,10 +33,10 @@ const ThematicCard: React.FC<ThematicCardProps> = ({ text, theme }) => {
         src={`https://source.unsplash.com/random/50×50/?${theme}`}
         srcSet={
           `https://source.unsplash.com/random/25×25/?${theme} 50w, ` +
-          `https://source.unsplash.com/random/50×50/?${theme} 100w, ` +
           `https://source.unsplash.com/random/100×100/?${theme} 200w`
         }
-        sizes="(max-width: 75px) 50px, 100px, 200px"
+        sizes="(max-width: 75px) 50px,
+               200px"
         onLoad={() => updateStatus(true)}
         alt={theme}
       ></CardImg>
