@@ -10,6 +10,7 @@ import config from '../config';
 import { MoodieLocalStorage } from '../services/Storage';
 
 const defaultUserFavorites: UserFavorites = config.defaults.defaultFavorites;
+
 export const userFavoritesReducer: Reducer<UserFavorites, FavoritesAction> = (
   state,
   action,

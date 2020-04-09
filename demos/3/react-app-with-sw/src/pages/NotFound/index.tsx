@@ -17,7 +17,6 @@ const NotFound: React.FC = () => {
       searchQuery: '404 page not found',
     }).then((searchResults) => {
       try {
-        console.log(searchResults);
         const images = searchResults.data.data;
         const experience = images[Math.floor(Math.random() * images.length)];
         setImage(experience);

@@ -1,11 +1,13 @@
 import * as localforage from 'localforage';
 import { MoodieStorageObject } from '../../types/storage';
+import * as Sentry from '@sentry/browser';
 
 export class MoodieLocalStorage {
   static async create(key: string, object: MoodieStorageObject) {
     try {
       await localforage.setItem(key, object);
     } catch (err) {
+      Sentry.captureException(err);
       console.log(err);
     }
   }
@@ -15,6 +17,7 @@ export class MoodieLocalStorage {
       const value = await localforage.getItem<MoodieStorageObject>(key);
       return value;
     } catch (err) {
+      Sentry.captureException(err);
       console.log(err);
     }
     return {};
@@ -25,6 +28,7 @@ export class MoodieLocalStorage {
       const object = (await this.read(key)) || {};
       await localforage.setItem(key, { ...object, ...patch });
     } catch (err) {
+      Sentry.captureException(err);
       console.log(err);
     }
   }
@@ -33,6 +37,7 @@ export class MoodieLocalStorage {
     try {
       await localforage.removeItem(key);
     } catch (err) {
+      Sentry.captureException(err);
       console.log(err);
     }
   }
@@ -41,6 +46,7 @@ export class MoodieLocalStorage {
     try {
       await localforage.clear();
     } catch (err) {
+      Sentry.captureException(err);
       console.log(err);
     }
   }

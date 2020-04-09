@@ -11,10 +11,7 @@ import InfiniteScroll from '../../components/InfiniteScroll';
 import ToggleFavoriteButton from '../../components/ToggleFavoriteButton';
 import config from '../../config';
 import { useAuth0 } from '../../services/Auth';
-import {
-  FavoritesContextProvider,
-  useFavorites,
-} from '../../services/Favorites';
+import { useFavorites } from '../../services/Favorites';
 import {
   GalleryContextConsumer,
   GalleryContextProvider,
@@ -56,68 +53,66 @@ const Moodie: React.FC<MoodieProps> = () => {
   const pageTitle = searchQuery || '';
   return (
     <GalleryContextProvider>
-      <FavoritesContextProvider>
-        <Container fluid={true} className="p-4">
-          <Head pageTitle={pageTitle} />
-          <Header />
-          <ErrorBoundary>
-            <Row>
-              <Col md={{ size: 3 }}>
-                {user ? <Favorites /> : null}
-                <Suggestions />
-              </Col>
-              <Col>
-                <GalleryContextConsumer>
-                  {({ state, dispatch }) => {
-                    const { giphySearchResults: log } = state;
-                    if (!searchQuery) {
-                      return (
-                        <Suspense
-                          fallback={
-                            <Spinner type="border" role="status" color="dark" />
-                          }
+      <Container fluid={true} className="p-4">
+        <Head pageTitle={pageTitle} />
+        <Header />
+        <ErrorBoundary>
+          <Row>
+            <Col md={{ size: 3 }}>
+              {user ? <Favorites /> : null}
+              <Suggestions />
+            </Col>
+            <Col>
+              <GalleryContextConsumer>
+                {({ state, dispatch }) => {
+                  const { giphySearchResults: log } = state;
+                  if (!searchQuery) {
+                    return (
+                      <Suspense
+                        fallback={
+                          <Spinner type="border" role="status" color="dark" />
+                        }
+                      >
+                        <About />
+                      </Suspense>
+                    );
+                  } else if (log.searchQuery === searchQuery) {
+                    return (
+                      <Container>
+                        <Row className="align-items-center">
+                          <Col xs="auto">
+                            <h1 className="font-weight-bold mx-0 my-2">
+                              {log.searchQuery}
+                            </h1>
+                          </Col>
+                          <Col xs="auto">
+                            <Badge className="mt-2 mx-0">
+                              {log.pagination!.total_count} GIFs
+                            </Badge>
+                          </Col>
+                          <Col xs="auto">
+                            <ToggleFavoriteButton
+                              isFavorite={isFavorite}
+                              toggleFavorite={toggleFavorite}
+                            />
+                          </Col>
+                        </Row>
+                        <InfiniteScroll
+                          onFetchMore={() => {
+                            fetchMore(state, dispatch);
+                          }}
                         >
-                          <About />
-                        </Suspense>
-                      );
-                    } else if (log.searchQuery === searchQuery) {
-                      return (
-                        <Container>
-                          <Row className="align-items-center">
-                            <Col xs="auto">
-                              <h1 className="font-weight-bold mx-0 my-2">
-                                {log.searchQuery}
-                              </h1>
-                            </Col>
-                            <Col xs="auto">
-                              <Badge className="mt-2 mx-0">
-                                {log.pagination!.total_count} GIFs
-                              </Badge>
-                            </Col>
-                            <Col xs="auto">
-                              <ToggleFavoriteButton
-                                isFavorite={isFavorite}
-                                toggleFavorite={toggleFavorite}
-                              />
-                            </Col>
-                          </Row>
-                          <InfiniteScroll
-                            onFetchMore={() => {
-                              fetchMore(state, dispatch);
-                            }}
-                          >
-                            <Gallery log={log} />
-                          </InfiniteScroll>
-                        </Container>
-                      );
-                    }
-                  }}
-                </GalleryContextConsumer>
-              </Col>
-            </Row>
-          </ErrorBoundary>
-        </Container>
-      </FavoritesContextProvider>
+                          <Gallery log={log} />
+                        </InfiniteScroll>
+                      </Container>
+                    );
+                  }
+                }}
+              </GalleryContextConsumer>
+            </Col>
+          </Row>
+        </ErrorBoundary>
+      </Container>
     </GalleryContextProvider>
   );
 };

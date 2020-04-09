@@ -8,6 +8,7 @@ import Moodie from './containers/Moodie';
 import * as serviceWorker from './serviceWorker';
 import { Auth0Provider } from './services/Auth';
 import NotFound from './pages/NotFound';
+import { FavoritesContextProvider } from './services/Favorites';
 
 const storageType = config.constants.STORAGE_TYPE;
 
@@ -40,11 +41,13 @@ const App: React.FC = () => (
       redirect_uri={auth0RedirectUri}
       audience={auth0Audience}
     >
-      <Switch>
-        <Route path="/:searchQuery" exact component={TrackedMoodie} />
-        <Route path="/" exact component={TrackedMoodie} />
-        <Route component={NotFound} />
-      </Switch>
+      <FavoritesContextProvider>
+        <Switch>
+          <Route path="/:searchQuery" exact component={TrackedMoodie} />
+          <Route path="/" exact component={TrackedMoodie} />
+          <Route component={NotFound} />
+        </Switch>
+      </FavoritesContextProvider>
     </Auth0Provider>
   </Router>
 );
