@@ -4,7 +4,7 @@ import { Jumbotron, ListGroup, ListGroupItem } from 'reactstrap';
 import { useSuggestions } from '../../services/Suggestions';
 import './index.css';
 
-const Suggestions: React.FC = () => {
+const Suggestions: React.FC<{ [key: string]: any }> = (props) => {
   const { state } = useSuggestions();
   const { suggestions } = state;
   return (
@@ -12,7 +12,7 @@ const Suggestions: React.FC = () => {
       <h3 className={'text-nowrap'}>
         <strong>Suggestions</strong>
       </h3>
-      <ListGroup flush>
+      <ListGroup flush {...props}>
         {suggestions.map((suggestion, idx) => (
           <ListGroupItem key={suggestion}>
             <h5 className="d-flex font-weight-bold">

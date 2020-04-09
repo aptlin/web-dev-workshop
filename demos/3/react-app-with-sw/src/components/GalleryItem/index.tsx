@@ -6,13 +6,23 @@ import { GIFObject } from '../../types/giphy';
 import { ImageLoader } from '../ImageLoader';
 interface GalleryItemProps {
   experience: GIFObject;
+  isCompressed?: boolean;
 }
-const GalleryItem: React.FC<GalleryItemProps> = ({ experience }) => {
+function getImage(experience: GIFObject, isCompressed?: boolean) {
+  return isCompressed
+    ? experience.images.fixed_width
+    : experience.images.original;
+}
+const GalleryItem: React.FC<GalleryItemProps> = ({
+  experience,
+  isCompressed = true,
+}) => {
   const [isSeen, setSeen] = useState(false);
+  const image = getImage(experience, isCompressed);
   const loader = (
     <ImageLoader
-      minHeight={`${experience.images.fixed_width.height}px`}
-      minWidth={`${experience.images.fixed_width.width}px`}
+      minHeight={`${image.height}px`}
+      minWidth={`${image.width}px`}
     />
   );
   const onVisible = (isVisible: boolean) => {
@@ -32,7 +42,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ experience }) => {
       <VisibilitySensor partialVisibility={true} onChange={onVisible}>
         {isSeen ? (
           <Img
-            src={experience.images.fixed_width.url}
+            src={image.url}
             loader={loader}
             style={{ flexShrink: 0, width: '100%' }}
           />

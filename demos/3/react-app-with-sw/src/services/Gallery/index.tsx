@@ -1,13 +1,13 @@
 import React, { createContext, useEffect, useReducer } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   dispatchGiphySearchWrapper,
   search,
   searchMore,
 } from '../../actions/search';
 import {
-  updateSearchQuery,
   updateSearchOffset,
+  updateSearchQuery,
 } from '../../actions/searchParams';
 import config from '../../config';
 import { giphySearchParamsReducer } from '../../reducers/giphySearchParams';
@@ -32,8 +32,8 @@ const GalleryContextProvider: React.FC = ({ children }) => {
     giphySearchResultsReducer,
     config.defaults.defaultSearchResults,
   );
-  const { pathname } = useLocation();
-  const searchQuery = pathname ? pathname.slice(1) : '';
+  const { searchQuery } = useParams();
+  // const searchQuery = pathname ? pathname.slice(1) : '';
   const dispatchGiphySearchAction = dispatchGiphySearchWrapper(
     dispatchGiphySearchResultsAction,
   );

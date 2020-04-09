@@ -1,14 +1,13 @@
+import * as Sentry from '@sentry/browser';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { withTracker } from './components/withTracker';
 import config from './config';
-import * as Sentry from '@sentry/browser';
 import Moodie from './containers/Moodie';
-import { Auth0Provider } from './services/Auth';
-import { GalleryContextProvider } from './services/Gallery';
 import * as serviceWorker from './serviceWorker';
-import { FavoritesContextProvider } from './services/Favorites';
+import { Auth0Provider } from './services/Auth';
+import NotFound from './pages/NotFound';
 
 const storageType = config.constants.STORAGE_TYPE;
 
@@ -41,14 +40,11 @@ const App: React.FC = () => (
       redirect_uri={auth0RedirectUri}
       audience={auth0Audience}
     >
-      <GalleryContextProvider>
-        <FavoritesContextProvider>
-          <Switch>
-            <Route path="/:searchQuery" component={TrackedMoodie} />
-            <Route path="/" component={TrackedMoodie} />
-          </Switch>
-        </FavoritesContextProvider>
-      </GalleryContextProvider>
+      <Switch>
+        <Route path="/:searchQuery" exact component={TrackedMoodie} />
+        <Route path="/" exact component={TrackedMoodie} />
+        <Route component={NotFound} />
+      </Switch>
     </Auth0Provider>
   </Router>
 );
