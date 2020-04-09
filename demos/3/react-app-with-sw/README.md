@@ -1,4 +1,4 @@
-# Building a moodboard with React & Reactstrap ([live demo](https://base-moodie.netlify.app))
+# Building a moodboard with React & Reactstrap ([live demo](https://offline-moodie.netlify.app))
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f79f4284-8f15-4d58-a196-f772647b69b1/deploy-status)](https://app.netlify.com/sites/offline-moodie/deploys)
 
@@ -6,17 +6,23 @@
 
 1. Obtain a Giphy API key by following [the instructions](https://support.giphy.com/hc/en-us/articles/360020283431-Request-A-GIPHY-API-Key).
 2. [Register an Auth0 app](https://auth0.com/docs/getting-started)
-3. Rename [`.example.env`](./.example.env) to `.env` and paste the Giphy key together with the Auth0 ids (see the [example dotenv config](./.example.env) for details).
+3. Rename [`.example.env`](./.example.env) to `.env` and paste the Giphy key together with the Auth0, Google Analytics and Sentry ids (see the [example dotenv config](./.example.env) for details).
 4. Run `npm install` and `npm start`.
 5. Tweak the code and enjoy!
 
-## Landing
+## Interface
+
+### Landing
 
 ![Moodie Landing](docs/landing.png)
 
-## Search
+### Search
 
 ![Moodie Search](docs/search.png)
+
+### User favorites
+
+![Moodie User Favorites](docs/favorites.png)
 
 ## Available Scripts
 

@@ -19,4 +19,12 @@
 
 ### Demos:
 
-- [Building a moodboard with auth, Google Analytics and Sentry profiling](demos/2/react-app-with-auth/README.md)
+- [Adding auth, Google Analytics and Sentry profiling](demos/2/react-app-with-auth/README.md)
+
+## How to design responsive web interfaces and control end-to-end user experience
+
+- [Prerequisites and reading materials](docs/3.md)
+
+### Demos:
+
+- [Supporting the offline mode and managing metadata](demos/3/react-app-with-sw/README.md)
