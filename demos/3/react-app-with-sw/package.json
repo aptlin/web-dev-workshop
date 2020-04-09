@@ -24,7 +24,6 @@
     "lodash.startcase": "^4.4.0",
     "lodash.throttle": "^4.1.1",
     "path": "^0.12.7",
-    "purgecss-webpack-plugin": "^2.1.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-ga": "^2.7.0",
@@ -40,12 +39,12 @@
     "yup": "^0.28.3"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "react-scripts start",
     "build:favicons": "node scripts/favicons",
     "build:sitemap": "node scripts/sitemap",
-    "build:client": "craco build",
+    "build:client": "react-scripts build",
     "build": "npm run build:favicons && npm run build:client && npm run build:sitemap",
-    "test": "craco test",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postbuild": "react-snap"
   },
@@ -65,8 +64,6 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^5.6.4",
-    "@fullhuman/postcss-purgecss": "^2.1.2",
     "@types/lodash.kebabcase": "^4.1.6",
     "@types/lodash.startcase": "^4.4.6",
     "@types/lodash.throttle": "^4.1.6",
