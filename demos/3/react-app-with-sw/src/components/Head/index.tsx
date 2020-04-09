@@ -12,7 +12,7 @@ interface HeadProps {
 }
 
 const Head: React.FC<HeadProps> = ({ pageTitle, imageUrl }) => {
-  const pageTitleFull = pageTitle ? `${siteTitle} | ${pageTitle}` : siteTitle;
+  const pageTitleFull = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
   const { pathname } = useLocation();
   const canonical = `${siteUrl}${pathname}`;
   return (
@@ -157,6 +157,8 @@ const Head: React.FC<HeadProps> = ({ pageTitle, imageUrl }) => {
           schemaGenerator({
             pathname,
             pageTitle,
+            pageTitleFull,
+            canonical,
           }),
         )}
       </script>

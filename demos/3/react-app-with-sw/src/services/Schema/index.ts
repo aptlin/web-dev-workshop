@@ -3,20 +3,25 @@ const { siteTitle, siteUrl } = config.meta;
 
 interface SchemaOptions {
   pathname: string;
+  pageTitleFull: string;
+  canonical: string;
   pageTitle?: string;
 }
-function schemaGenerator({ pathname, pageTitle }: SchemaOptions) {
+function schemaGenerator({
+  pathname,
+  pageTitle,
+  canonical,
+  pageTitleFull,
+}: SchemaOptions) {
   const isSubPage = pageTitle && pathname !== '/';
-  const canonical = `${siteUrl}${pathname}`;
-  const pageTitleFull = pageTitle ? `${siteTitle} | ${pageTitle}` : siteTitle;
 
   const schema = [
     {
       '@context': 'http://schema.org',
       '@type': 'WebSite',
       url: canonical,
-      name: pageTitle || siteTitle,
-      alternateName: pageTitleFull,
+      name: pageTitleFull,
+      alternateName: pageTitle,
     },
   ];
 
