@@ -53,17 +53,15 @@ const Head: React.FC<HeadProps> = ({ pageTitle, imageUrl }) => {
       <link rel="canonical" href={canonical} />
 
       <meta content={imageUrl || `${siteUrl}/social.png`} property="og:image" />
-      <meta content="1500" property="og:image:width" />
-      <meta content="500" property="og:image:height" />
+      <meta content="1200" property="og:image:width" />
+      <meta content="1200" property="og:image:height" />
       <meta
         content={imageUrl || `${siteUrl}/social.png`}
         name="twitter:image"
       />
-      <meta content="1024" name="twitter:image:width" />
-      <meta content="512" name="twitter:image:height" />
+      <meta content="1200" name="twitter:image:width" />
+      <meta content="1200" name="twitter:image:height" />
       <meta content={imageUrl || `${siteUrl}/social.png`} property="og:image" />
-      <meta content="1024" property="og:image:width" />
-      <meta content="512" property="og:image:height" />
 
       <meta content={themeColor} name="msapplication-TileColor" />
       <meta
