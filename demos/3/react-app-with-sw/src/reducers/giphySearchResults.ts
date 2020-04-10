@@ -41,7 +41,6 @@ export const giphySearchResultsReducer: Reducer<
       };
 
     case FULFILLED_SEARCH_ACTION:
-      console.log(payloadData);
       return {
         searchQuery: payloadData.searchQuery,
         data: payloadData.data,
