@@ -41,8 +41,8 @@ export const giphySearchResultsReducer: Reducer<
       };
 
     case FULFILLED_SEARCH_ACTION:
+      console.log(payloadData);
       return {
-        ...state,
         searchQuery: payloadData.searchQuery,
         data: payloadData.data,
         pagination: payloadData.pagination,
@@ -54,7 +54,7 @@ export const giphySearchResultsReducer: Reducer<
 
     case FULFILLED_SEARCH_MORE_ACTION:
       return {
-        ...state,
+        searchQuery: state.searchQuery,
         data: state.data.concat(payloadData.data),
         pagination: payloadData.pagination,
         meta: payloadData.meta,

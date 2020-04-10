@@ -66,6 +66,7 @@ const Moodie: React.FC<MoodieProps> = () => {
               <GalleryContextConsumer>
                 {({ state, dispatch }) => {
                   const { giphySearchResults: log } = state;
+                  console.log(log);
                   if (!searchQuery) {
                     return (
                       <Suspense
