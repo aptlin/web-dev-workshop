@@ -1,5 +1,6 @@
 @media (min-width: 992px), (max-width: 767px) {
   .suggestions {
-    padding: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
