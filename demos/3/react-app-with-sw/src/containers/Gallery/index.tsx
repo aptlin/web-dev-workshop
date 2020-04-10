@@ -52,11 +52,7 @@ const Gallery: React.FC<GalleryProps> = ({ log }) => {
         ))}
       </Col>
     ));
-    return (
-      <Container fluid>
-        <Row>{cards}</Row>
-      </Container>
-    );
+    return <Row>{cards}</Row>;
   }
   return null;
 };

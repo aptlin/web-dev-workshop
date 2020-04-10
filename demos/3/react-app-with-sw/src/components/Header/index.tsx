@@ -9,7 +9,7 @@ import ErrorBoundary from '../../components/ErrorBoundary';
 
 const Header: React.FC = () => {
   return (
-    <Navbar>
+    <Navbar className="d-flex align-items-center justify-content-start px-0 py-0">
       <Link className="navbar-brand-link" to="/">
         <Logo />
         <span className="brandname">Moodie</span>

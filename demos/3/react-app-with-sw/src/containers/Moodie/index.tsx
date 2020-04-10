@@ -78,7 +78,7 @@ const Moodie: React.FC<MoodieProps> = () => {
                     );
                   } else if (log.searchQuery === searchQuery) {
                     return (
-                      <Container>
+                      <div className="p-2">
                         <Row className="align-items-center">
                           <Col xs="auto">
                             <h1 className="font-weight-bold mx-0 my-2">
@@ -104,7 +104,7 @@ const Moodie: React.FC<MoodieProps> = () => {
                         >
                           <Gallery log={log} />
                         </InfiniteScroll>
-                      </Container>
+                      </div>
                     );
                   }
                 }}

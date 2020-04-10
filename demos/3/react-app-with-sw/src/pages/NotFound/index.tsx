@@ -31,9 +31,9 @@ const NotFound: React.FC = () => {
       <Header />
       <Jumbotron className="bg-white my-0 py-0">
         <h1>Alas, the page you are looking for does not exist.</h1>
+        <Suggestions className="flex-row flex-wrap" horizontal flush={false} />
         {image ? <GalleryItem experience={image} isCompressed={false} /> : null}
       </Jumbotron>
-      <Suggestions className="flex-row flex-wrap" horizontal flush={false} />
     </Container>
   );
 };

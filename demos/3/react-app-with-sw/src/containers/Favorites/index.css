@@ -1,5 +1,11 @@
-.badge {
-  display: flex;
-  align-items: center;
-  margin-right: 1rem;
+.favorites {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 992px), (max-width: 700px) {
+  .favorites {
+    padding: 2rem;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+  }
 }

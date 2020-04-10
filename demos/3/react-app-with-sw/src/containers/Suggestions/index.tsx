@@ -8,8 +8,8 @@ const Suggestions: React.FC<{ [key: string]: any }> = (props) => {
   const { state } = useSuggestions();
   const { suggestions } = state;
   return (
-    <Jumbotron className="bg-white py-0">
-      <h3 className={'text-nowrap'}>
+    <div className="suggestions">
+      <h3>
         <strong>Suggestions</strong>
       </h3>
       <ListGroup flush {...props}>
@@ -25,7 +25,7 @@ const Suggestions: React.FC<{ [key: string]: any }> = (props) => {
           </ListGroupItem>
         ))}
       </ListGroup>
-    </Jumbotron>
+    </div>
   );
 };
 export default Suggestions;

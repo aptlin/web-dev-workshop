@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Jumbotron } from 'reactstrap';
 import { removeFavorite } from '../../actions/favorites';
 import LikeButton from '../../components/Like';
 import { useFavorites } from '../../services/Favorites';
@@ -9,8 +8,8 @@ const Favorites: React.FC = () => {
   const { state, dispatch } = useFavorites();
   const { liked } = state;
   return (
-    <Jumbotron>
-      <h3 className={'text-nowrap'}>
+    <div className="favorites">
+      <h3 className="text-nowrap">
         <strong>Favorites ({liked.length})</strong>
       </h3>
       {liked.map((favorite) => (
@@ -27,7 +26,7 @@ const Favorites: React.FC = () => {
           </span>
         </h5>
       ))}
-    </Jumbotron>
+    </div>
   );
 };
 export default Favorites;
