@@ -1,4 +1,4 @@
-@media (min-width: 992px), (max-width: 700px) {
+@media (min-width: 992px), (max-width: 767px) {
   .suggestions {
     padding: 2rem;
   }
