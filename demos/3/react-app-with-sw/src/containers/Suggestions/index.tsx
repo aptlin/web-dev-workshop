@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Jumbotron, ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useSuggestions } from '../../services/Suggestions';
 import './index.css';
 

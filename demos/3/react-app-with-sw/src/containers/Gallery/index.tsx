@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import GalleryItem from '../../components/GalleryItem';
 import {
   DEFAULT_COLUMNS_NUM,

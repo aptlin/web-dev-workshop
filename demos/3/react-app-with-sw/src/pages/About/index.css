@@ -1,0 +1,9 @@
+.landing-image {
+  max-height: 200px;
+}
+
+@media (min-width: 767.98px) {
+  .landing-image {
+    max-height: 400px;
+  }
+}
